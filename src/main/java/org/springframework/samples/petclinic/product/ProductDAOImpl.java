@@ -30,6 +30,9 @@ public class ProductDAOImpl implements ProductDAO {
         LOGGER.info("[getProduct] product 정보 요청. productId : {}", productId);
         ProductEntity productEntity = productRepository.getById(productId);
         LOGGER.info("[getProduct] product 정보 요청 완료. productId : {}", productEntity.getProductId());
+//		LOGGER.error("[getProduct] product 정보 요청 ?. productName : {}", productEntity.getProductName());
+//		LOGGER.error("[getProduct] product 정보 요청 ?. productPrice : {}", productEntity.getProductPrice());
+//		LOGGER.error("[getProduct] product 정보 요청 ?. productStock : {}", productEntity.getProductStock());
         return productEntity;
     }
 

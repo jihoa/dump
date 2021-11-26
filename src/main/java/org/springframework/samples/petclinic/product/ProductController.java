@@ -1,14 +1,13 @@
 package org.springframework.samples.petclinic.product;
 
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.samples.petclinic.common.Constants.ExceptionClass;
+import org.springframework.samples.petclinic.common.exception.AroundHubException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,14 +35,41 @@ public class ProductController {
 
 	// http://localhost:8080/api/v1/product-api/product
 	@PostMapping(value = "/product")
-	public ProductDto createProduct(@RequestBody ProductDto productDto) {
+	public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto) {
 
 		String productId = productDto.getProductId();
 		String productName = productDto.getProductName();
 		int productPrice = productDto.getProductPrice();
 		int productStock = productDto.getProductStock();
 
-		return productService.saveProduct(productId, productName, productPrice, productStock);
+		ProductDto response = productService.saveProduct(productId, productName, productPrice, productStock);
+		//return productService.saveProduct(productId, productName, productPrice, productStock);
+		//return response;
+
+		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
+
+
+	@GetMapping(value = "/product/exception")
+	public void exceptionTest() throws AroundHubException {
+		throw new AroundHubException(ExceptionClass.PRODUCT, HttpStatus.FORBIDDEN, "접근이 금지되었습니다.");
+	}
+
+
+//	@ExceptionHandler(value = Exception.class)
+//	public ResponseEntity<Map<String, String>> ExceptionHandler(Exception e) {
+//		HttpHeaders responseHeaders = new HttpHeaders();
+//		//responseHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
+//		HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
+//
+//		LOGGER.error("controller 내 ExceptionHandler 호출, {}, {}", e.getCause(), e.getMessage());
+//
+//		Map<String, String> map = new HashMap<>();
+//		map.put("error type", httpStatus.getReasonPhrase());
+//		map.put("code", "400");
+//		map.put("message", "에러 발생");
+//
+//		return new ResponseEntity<>(map, responseHeaders, httpStatus);
+//	}
 
 }

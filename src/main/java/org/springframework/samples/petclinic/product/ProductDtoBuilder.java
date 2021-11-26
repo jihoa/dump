@@ -1,8 +1,5 @@
 package org.springframework.samples.petclinic.product;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 
 //@Builder 이해용.
