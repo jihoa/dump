@@ -16,7 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 //@SpringBootTest(classes = {ProductDataHandlerImpl.class, ProductServiceImpl.class})
 @ExtendWith(SpringExtension.class)
 @Import({ProductDataHandlerImpl.class, ProductServiceImpl.class})
-class ProductServiceImplTest {
+class ProdServiceImplTest {
 
 	@MockBean
 	ProductDataHandlerImpl productDataHandler;
