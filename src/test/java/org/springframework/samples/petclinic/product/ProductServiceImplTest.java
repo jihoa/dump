@@ -9,14 +9,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-//@SpringBootTest(classes = {ProductDataHandlerImpl.class, ProductServiceImpl.class})
-@ExtendWith(SpringExtension.class)
-@Import({ProductDataHandlerImpl.class, ProductServiceImpl.class})
-class ProdServiceImplTest {
+@SpringBootTest(classes = {ProductDataHandlerImpl.class, ProductServiceImpl.class})
+//@ExtendWith(SpringExtension.class)
+//@Import({ProductDataHandlerImpl.class, ProductServiceImpl.class})
+class ProductServiceImplTest {
 
 	@MockBean
 	ProductDataHandlerImpl productDataHandler;
@@ -30,13 +31,8 @@ class ProdServiceImplTest {
 		Mockito.when(productDataHandler.getProductEntity("123"))
 			.thenReturn(new ProductEntity("123", "pen", 2000, 3000));
 
-		//when
+		//when //verify
 		ProductDto productDto = productService.getProduct("123");
-
-//		assertEquals(productDto.getProductId(), "123");
-//		assertEquals(productDto.getProductName(), "pen");
-//		assertEquals(productDto.getProductPrice(), 2000);
-//		assertEquals(productDto.getProductStock(), 3000);
 
 		assertThat(productDto.getProductId()).isEqualTo("123");
 		assertThat(productDto.getProductName()).isEqualTo("pen");

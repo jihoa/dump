@@ -109,7 +109,7 @@
     </dependency>
     <dependency>
       <groupId>org.webjars</groupId>
-      <artifactId>bootstrap</artifactId>
+      <artifactId>bootstrap</artifactId>E
       <version>${webjars-bootstrap.version}</version>
     </dependency>
     <!-- end of webjars -->
