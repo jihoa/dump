@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springframework.samples.petclinic.todo.TodoMapper">
+
+    <select id="getTodosByUser" resultType="org.springframework.samples.petclinic.todo.Todo">
+        SELECT
+             id
+           , user_name
+           , description
+           , target_date
+        FROM TODO
+        WHERE user_name = #{username}
+    </select>
+
+<!--    <select id="getTodoById" resultType="com.asianaidt.springmvc.step03.todo.domain.Todo">-->
+<!--        SELECT-->
+<!--            id-->
+<!--             , user_name,-->
+<!--             , description-->
+<!--             , target_date-->
+<!--        FROM TODO-->
+<!--        WHERE id = #{id}-->
+<!--    </select>-->
+
+
+<!--    <insert id="save" parameterType="com.asianaidt.springmvc.step03.todo.domain.Todo">-->
+<!--        INSERT INTO TODO (user_name, description, target_date)-->
+<!--        VALUES (#{username}, #{description}, #{targetDate})-->
+<!--    </insert>-->
+
+</mapper>
