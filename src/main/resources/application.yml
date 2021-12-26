@@ -1,0 +1,18 @@
+server:
+  port: 8090
+
+# mybatis
+mybatis:
+  # mapper 파일 위치 지정
+  mapper-locations: classpath:/mappers/**/*.xml
+  # model 프로퍼티 camel case 설정
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+
+logging:
+  level:
+    org:
+      springframework:
+        web: debug

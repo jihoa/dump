@@ -1,3 +1,5 @@
+INSERT INTO TODO (user_name, description) VALUES ('James', 'description');
+
 INSERT INTO vets VALUES (1, 'James', 'Carter');
 INSERT INTO vets VALUES (2, 'Helen', 'Leary');
 INSERT INTO vets VALUES (3, 'Linda', 'Douglas');
