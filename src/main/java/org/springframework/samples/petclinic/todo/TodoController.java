@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import springfox.documentation.swagger2.mappers.ModelMapper;
@@ -31,10 +32,10 @@ public class TodoController {
 
 
 	@ApiOperation(value = "REST APT SAMPLE", notes = "API 명세 샘플")
-	@GetMapping(value = "/todoListApi")//, consumes = MediaType.APPLICATION_JSON_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	@GetMapping(value = "/todoListApi/{name}")//, consumes = MediaType.APPLICATION_JSON_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	@ResponseBody
-	public List<Todo> getTodosApi() {
-		String name = "James";
+	public List<Todo> getTodosApi(@PathVariable String name) {
+		//String name = "James";
 		List<Todo> actualList = todoService.getTodosByUser(name);
 		return actualList;
 	}
