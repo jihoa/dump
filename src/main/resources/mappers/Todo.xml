@@ -24,9 +24,9 @@
 <!--    </select>-->
 
 
-<!--    <insert id="save" parameterType="com.asianaidt.springmvc.step03.todo.domain.Todo">-->
-<!--        INSERT INTO TODO (user_name, description, target_date)-->
-<!--        VALUES (#{username}, #{description}, #{targetDate})-->
-<!--    </insert>-->
+    <insert id="save" parameterType="org.springframework.samples.petclinic.todo.Todo">
+        INSERT INTO TODO (user_name, description, target_date)
+        VALUES (#{username}, #{description}, #{targetDate})
+    </insert>
 
 </mapper>

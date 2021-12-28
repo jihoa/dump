@@ -15,4 +15,14 @@ public class MybatisTodoServiceImpl implements TodoService{
 		return todoMapper.getTodosByUser(user);
 	}
 
+	@Override
+	public void updateTodo(Todo todo) {
+
+	}
+
+	@Override
+	public void saveTodo(Todo todo) {
+		todoMapper.save(todo);
+	}
+
 }

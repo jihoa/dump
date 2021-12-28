@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @NoArgsConstructor
 @Setter @Getter
-@ApiModel("RequestDto")
+@ApiModel("리퀘스트DTO")
 public class RequestDto {
     private long id ;
     @ApiModelProperty("사용자이름")
@@ -22,7 +22,7 @@ public class RequestDto {
     @ApiModelProperty("설명")
     private String description;
 
-    @NotNull
+    //@NotNull
     @ApiModelProperty("완료일자")
     private Date targetDate;
 
