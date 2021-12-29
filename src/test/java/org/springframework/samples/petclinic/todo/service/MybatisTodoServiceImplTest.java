@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 //@ExtendWith(MockitoExtension.class)
-@SpringBootTest//(classes = {MybatisTodoServiceImpl.class, TodoMapper.class})
+@SpringBootTest//(classes = {MybatisTodoServiceImpl.class, TodoMapper.class})//추후 추가하기..
 class MybatisTodoServiceImplTest {
     Logger logger = LoggerFactory.getLogger(MybatisTodoServiceImplTest.class);
     //@InjectMocks
