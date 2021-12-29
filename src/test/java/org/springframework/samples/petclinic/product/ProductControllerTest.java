@@ -27,7 +27,7 @@ class ProductControllerTest {
 
 	// ProductController에서 잡고 있는 Bean 객체에 대해 Mock 형태의 객체를 생성해줌
 	@MockBean
-	ProductServiceImpl productService;
+	ProductService productService;
 
 	// http://localhost:8080/api/v1/product-api/product/{productId}
 	@Test
