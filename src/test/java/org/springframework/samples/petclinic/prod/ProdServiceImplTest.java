@@ -15,7 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @Import({ProdDataHandlerImpl.class, ProdServiceImpl.class})
 class ProdServiceImplTest {
-	
+
 	@MockBean
 	ProdDataHandlerImpl prodDataHandlerImpl;
 
@@ -28,6 +28,9 @@ class ProdServiceImplTest {
 		//given
 		Mockito.when(prodDataHandlerImpl.getProductEntity("123")).thenReturn(new ProductEntity("123", "pen", 2000, 3000));
 
+		//when
+
+		//then
 
 	}
 }
