@@ -1,6 +1,7 @@
-package org.springframework.samples.petclinic.sample;
+package org.springframework.samples.petclinic.restTemplate;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.samples.petclinic.sample.MemberDTO;
 
 public interface RestTemplateService {
 
