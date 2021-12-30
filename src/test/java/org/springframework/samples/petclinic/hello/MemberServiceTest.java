@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.hello;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,13 +28,14 @@ public class MemberServiceTest {
 	void 회원가입() {
 		// given : Mock 객체가 특정 상황에서 해야하는 행위를 정의하는 메소드
 		Member member = new Member();
-		member.setName("hello");
+		member.setName("hello");//id는 자동 증가.
 
 		// when
 		Long savedId = memberService.join(member);
 
 		// then
 		Member findMember = memberService.findOne(savedId).get();
+		Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
 		assertThat(member.getName()).isEqualTo(findMember.getName());
 	}
 
