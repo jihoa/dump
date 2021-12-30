@@ -36,7 +36,7 @@ class ProductControllerTest {
 
 		// given : Mock 객체가 특정 상황에서 해야하는 행위를 정의하는 메소드
 		given(productService.getProduct("12315")).willReturn(
-			new ProductDto("15871", "pen", 5000, 2000));
+			new ProductDto("12315", "pen", 5000, 2000));
 
 		String productId = "12315";
 
