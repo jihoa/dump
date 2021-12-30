@@ -70,10 +70,6 @@ public class TodoController {
 	}
 
 
-	@GetMapping("/test")
-	public String Test() {
-		return "hello";
-	}
 
 
 }

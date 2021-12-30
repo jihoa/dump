@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface TodoMapper {
-	List<Todo> getTodosByUser(String user);
+	List<Todo> getTodosByUser(String name);
 
     void save(Todo todo);
 }

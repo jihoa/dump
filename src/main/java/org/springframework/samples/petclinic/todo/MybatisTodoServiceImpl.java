@@ -10,9 +10,10 @@ public class MybatisTodoServiceImpl implements TodoService{
 	@Autowired
 	TodoMapper todoMapper;
 
+	//이름으로 조회..
 	@Override
-	public List<Todo> getTodosByUser(String user) {
-		return todoMapper.getTodosByUser(user);
+	public List<Todo> getTodosByUser(String name) {
+		return todoMapper.getTodosByUser(name);
 	}
 
 	@Override
