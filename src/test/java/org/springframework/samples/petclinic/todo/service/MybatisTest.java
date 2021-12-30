@@ -56,8 +56,6 @@ public class MybatisTest {
 //		assertThat(todo1.getTargetDate()).isEqualTo(resultList.get(0).getTargetDate());
 		//verify(todoMapper).getTodosByUser(any(String.class));
 
-		//then
-
 
 	}
 
