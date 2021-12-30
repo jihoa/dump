@@ -19,11 +19,29 @@ class TodoTest {
         return localValidatorFactoryBean;
     }
 
+	@Test
+	void shouldNotValidateWhenName_TenCharacter() {
+		LocaleContextHolder.setLocale(Locale.ENGLISH);
+		Todo todo1 = new Todo();
+		todo1.setUsername("test");
+		todo1.setDescription("10자이상입력");
+
+		Validator validator = createValitor();
+		Set<ConstraintViolation<Todo>> constraintViolations = validator.validate(todo1);
+
+		assertThat(constraintViolations.size()).isEqualTo(1);
+		ConstraintViolation<Todo> violation = constraintViolations.iterator().next();
+		assertThat(violation.getPropertyPath()).hasToString("description");
+		//@NotNull
+		assertThat(violation.getMessage()).hasToString("10자 이상 입력하세요...");
+	}
+
     @Test
     void shouldNotValidateWhenNameEmpty() {
         LocaleContextHolder.setLocale(Locale.KOREA);
         Todo todo1 = new Todo();
-        todo1.setUsername("");
+        todo1.setUsername("test");
+		todo1.setDescription("");
 
         Validator validator = createValitor();
         Set<ConstraintViolation<Todo>> constraintViolations = validator.validate(todo1);
@@ -40,7 +58,8 @@ class TodoTest {
 	void shouldNotValidateWhenNameEmpty_en() {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		Todo todo1 = new Todo();
-		todo1.setUsername("");
+		todo1.setUsername("test");
+		todo1.setDescription("");
 
 		Validator validator = createValitor();
 		Set<ConstraintViolation<Todo>> constraintViolations = validator.validate(todo1);
