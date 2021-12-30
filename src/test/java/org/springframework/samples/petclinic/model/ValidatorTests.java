@@ -40,7 +40,7 @@ class ValidatorTests {
 	}
 
 	@Test
-	void shouldNotValidateWhenFirstNameEmpty() {
+	void shouldNotValidateWhenFirstNameEmpty_en() {
 
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		Person person = new Person();
@@ -54,6 +54,25 @@ class ValidatorTests {
 		ConstraintViolation<Person> violation = constraintViolations.iterator().next();
 		assertThat(violation.getPropertyPath().toString()).isEqualTo("firstName");
 		assertThat(violation.getMessage()).isEqualTo("must not be empty");
+	}
+
+
+	@Test
+	void shouldNotValidateWhenFirstNameEmpty_ko() {
+
+		LocaleContextHolder.setLocale(Locale.KOREA);
+		Person person = new Person();
+		person.setFirstName("");
+		person.setLastName("smith");
+
+		Validator validator = createValidator();
+		Set<ConstraintViolation<Person>> constraintViolations = validator.validate(person);
+
+		assertThat(constraintViolations).hasSize(1);
+		ConstraintViolation<Person> violation = constraintViolations.iterator().next();
+		assertThat(violation.getPropertyPath().toString()).isEqualTo("firstName");
+		//@NotEmpty
+		assertThat(violation.getMessage()).isEqualTo("비어 있을 수 없습니다");
 	}
 
 }

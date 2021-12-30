@@ -31,8 +31,24 @@ class TodoTest {
         assertThat(constraintViolations.size()).isEqualTo(1);
         ConstraintViolation<Todo> violation = constraintViolations.iterator().next();
         assertThat(violation.getPropertyPath()).hasToString("description");
+		//@NotNull
         assertThat(violation.getMessage()).hasToString("널이어서는 안됩니다");
-
     }
+
+
+	@Test
+	void shouldNotValidateWhenNameEmpty_en() {
+		LocaleContextHolder.setLocale(Locale.ENGLISH);
+		Todo todo1 = new Todo();
+		todo1.setUsername("");
+
+		Validator validator = createValitor();
+		Set<ConstraintViolation<Todo>> constraintViolations = validator.validate(todo1);
+
+		assertThat(constraintViolations.size()).isEqualTo(1);
+		ConstraintViolation<Todo> violation = constraintViolations.iterator().next();
+		assertThat(violation.getPropertyPath()).hasToString("description");
+		assertThat(violation.getMessage()).hasToString("must not be null");
+	}
 
 }
