@@ -12,4 +12,6 @@ public interface ProductService {
     boolean deleteProduct(String productId);
 
     ResponseEntity<List<ProductDto>> findAll();
+
+	ProductDto modifyProduct(String productId, String productName, int productPrice, int productStock);
 }

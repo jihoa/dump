@@ -12,4 +12,6 @@ public interface ProductDataHandler {
   boolean deleteProduct(String productId);
 
   List<ProductEntity> findAll();
+
+  ProductEntity modifyProductEntity(String productId, String productName, int productPrice, int productStock);
 }

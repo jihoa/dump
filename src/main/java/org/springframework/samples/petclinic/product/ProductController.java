@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,10 +30,12 @@ public class ProductController {
         this.productService = productService;
     }
 
+	//기능 구현 yet
 	@GetMapping(value = "/products")
 	public ResponseEntity<List<ProductDto>> getProducts() {
 		return productService.findAll();
 	}
+
 	// http://localhost:8080/api/v1/product-api/product/{productId}
 	@GetMapping(value = "/product/{productId}")
 	public ProductDto getProduct(@PathVariable String productId) {
@@ -51,6 +54,18 @@ public class ProductController {
 		ProductDto response = productService.saveProduct(productId, productName, productPrice, productStock);
 		//return productService.saveProduct(productId, productName, productPrice, productStock);
 		//return response;
+
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
+
+	@PutMapping(value = "/product")
+	public ResponseEntity<ProductDto> modifyProduct(@Valid @RequestBody ProductDto productDto) {
+		String productId = productDto.getProductId();
+		String productName = productDto.getProductName();
+		int productPrice = productDto.getProductPrice();
+		int productStock = productDto.getProductStock();
+
+		ProductDto response = productService.modifyProduct(productId, productName, productPrice, productStock);
 
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}

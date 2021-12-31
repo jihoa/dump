@@ -4,6 +4,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.restful.exception.MemberNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -53,6 +54,16 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<ProductEntity> getProducts() {
 		return productRepository.findAll();
+	}
+
+	@Override
+	public ProductEntity modifyProduct(final ProductEntity productEntity) {
+		if (productRepository.findById(productEntity.getProductId()).isPresent()) {
+			productRepository.save(productEntity);
+		} else {
+			throw new MemberNotFoundException("[update] productEntity is not found by : " + productEntity.getProductId());
+		}
+		return productEntity;
 	}
 
 	/**

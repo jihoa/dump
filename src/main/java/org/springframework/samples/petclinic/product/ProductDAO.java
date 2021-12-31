@@ -11,4 +11,6 @@ public interface ProductDAO {
     boolean deleteProduct(String productId);
 
     List<ProductEntity> getProducts();
+
+	ProductEntity modifyProduct(ProductEntity productEntity);
 }

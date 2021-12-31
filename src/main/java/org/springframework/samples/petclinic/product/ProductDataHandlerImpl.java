@@ -47,4 +47,12 @@ public class ProductDataHandlerImpl implements ProductDataHandler {
 	public List<ProductEntity> findAll() {
 		return productDAO.getProducts();
 	}
+
+	@Override
+	public ProductEntity modifyProductEntity(String productId, String productName, int productPrice, int productStock) {
+		ProductEntity productEntity = new ProductEntity(productId, productName, productPrice,
+			productStock);
+
+		return productDAO.modifyProduct(productEntity);
+	}
 }
