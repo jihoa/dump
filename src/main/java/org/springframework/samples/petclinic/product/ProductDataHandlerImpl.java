@@ -36,4 +36,9 @@ public class ProductDataHandlerImpl implements ProductDataHandler {
         LOGGER.info("[saveProductEntity] productDAO로 Product 정보 요청. productId : {}", productId);
         return productDAO.getProduct(productId);
     }
+
+	@Override
+	public boolean deleteProduct(String productId) {
+		return productDAO.deleteProduct(productId);
+	}
 }

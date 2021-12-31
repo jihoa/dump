@@ -6,4 +6,5 @@ public interface ProductDAO {
 
     ProductEntity getProduct(String productId);
 
+    boolean deleteProduct(String productId);
 }

@@ -10,6 +10,9 @@ public class ProductDAOImpl implements ProductDAO {
 
     private final Logger LOGGER = LoggerFactory.getLogger(ProductDAOImpl.class);
 
+	static final boolean DELETE_SUCCESS = true;
+	static final boolean DELETE_FAILED = false;
+
     ProductRepository productRepository;
 
     @Autowired
@@ -36,7 +39,17 @@ public class ProductDAOImpl implements ProductDAO {
         return productEntity;
     }
 
-    /**
+	@Override
+	public boolean deleteProduct(String productId) {
+		productRepository.deleteById(productId);
+		if (!productRepository.findById(productId).isPresent()) {
+			return DELETE_SUCCESS;
+		} else {
+			return DELETE_FAILED;
+		}
+	}
+
+	/**
      * Repository에서 기본적으로 제공하는 대표적인 메소드
      */
     private void testRepositoryMethod() {

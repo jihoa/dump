@@ -19,7 +19,7 @@ import org.hibernate.annotations.CreationTimestamp;
 @Table(name = "todo")
 public class Todo {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id ;
 	@ApiModelProperty(value = "username", name = "username", dataType = "String", example = "yhkim")
 	@Column(name = "user_name")

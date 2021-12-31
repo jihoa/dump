@@ -50,4 +50,10 @@ public class ProductServiceImpl implements ProductService {
 
         return productDto;
     }
+
+	@Override
+	public boolean deleteProduct(String productId) {
+		boolean deleteProduct = productDataHandler.deleteProduct(productId);
+		return deleteProduct;
+	}
 }

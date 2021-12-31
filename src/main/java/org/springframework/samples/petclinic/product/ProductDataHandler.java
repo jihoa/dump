@@ -8,4 +8,5 @@ public interface ProductDataHandler {
 
   ProductEntity getProductEntity(String productId);
 
+  boolean deleteProduct(String productId);
 }
