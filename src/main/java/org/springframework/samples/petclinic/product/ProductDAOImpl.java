@@ -4,7 +4,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.restful.exception.MemberNotFoundException;
+import org.springframework.samples.petclinic.product.exception.ProductExistedException;
+import org.springframework.samples.petclinic.product.exception.ProductNotFoundException;
+import org.springframework.samples.petclinic.restful.exception.MemberExistedException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,10 +26,14 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public ProductEntity saveProduct(ProductEntity productEntity) {
-        LOGGER.info("[saveProduct] product 정보 저장. productId : {}", productEntity.getProductId());
-        ProductEntity productEntity1 = productRepository.save(productEntity);
-        LOGGER.info("[saveProduct] product 정보 저장완료. productId : {}", productEntity1.getProductId());
-        return productEntity1;
+		if (productRepository.findById(productEntity.getProductId()).isPresent()) {
+			throw new ProductExistedException("product is already joined : " + productEntity.getProductId());
+		} else {
+			LOGGER.info("[saveProduct] product 정보 저장. productId : {}", productEntity.getProductId());
+			ProductEntity productEntity1 = productRepository.save(productEntity);
+			LOGGER.info("[saveProduct] product 정보 저장완료. productId : {}", productEntity1.getProductId());
+			return productEntity1;
+		}
     }
 
     @Override
@@ -61,7 +67,7 @@ public class ProductDAOImpl implements ProductDAO {
 		if (productRepository.findById(productEntity.getProductId()).isPresent()) {
 			productRepository.save(productEntity);
 		} else {
-			throw new MemberNotFoundException("[update] productEntity is not found by : " + productEntity.getProductId());
+			throw new ProductNotFoundException("[update] productEntity is not found by : " + productEntity.getProductId());
 		}
 		return productEntity;
 	}
