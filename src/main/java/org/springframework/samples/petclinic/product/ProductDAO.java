@@ -1,5 +1,7 @@
 package org.springframework.samples.petclinic.product;
 
+import java.util.List;
+
 public interface ProductDAO {
 
     ProductEntity saveProduct(ProductEntity productEntity);
@@ -7,4 +9,6 @@ public interface ProductDAO {
     ProductEntity getProduct(String productId);
 
     boolean deleteProduct(String productId);
+
+    List<ProductEntity> getProducts();
 }

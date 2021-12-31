@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.product;
 
+import java.util.List;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,10 @@ public class ProductController {
         this.productService = productService;
     }
 
+	@GetMapping(value = "/products")
+	public ResponseEntity<List<ProductDto>> getProducts() {
+		return productService.findAll();
+	}
 	// http://localhost:8080/api/v1/product-api/product/{productId}
 	@GetMapping(value = "/product/{productId}")
 	public ProductDto getProduct(@PathVariable String productId) {

@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.product;
 
 
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 public interface ProductService {
@@ -9,4 +10,6 @@ public interface ProductService {
 	ProductDto getProduct(String productId);
 
     boolean deleteProduct(String productId);
+
+    ResponseEntity<List<ProductDto>> findAll();
 }

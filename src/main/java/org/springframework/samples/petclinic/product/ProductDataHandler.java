@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.product;
 
+import java.util.List;
 import org.springframework.samples.petclinic.product.ProductEntity;
 
 public interface ProductDataHandler {
@@ -9,4 +10,6 @@ public interface ProductDataHandler {
   ProductEntity getProductEntity(String productId);
 
   boolean deleteProduct(String productId);
+
+  List<ProductEntity> findAll();
 }

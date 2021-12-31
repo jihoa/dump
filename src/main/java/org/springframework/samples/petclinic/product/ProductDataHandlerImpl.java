@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.product;
 
+import java.util.List;
 import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,5 +41,10 @@ public class ProductDataHandlerImpl implements ProductDataHandler {
 	@Override
 	public boolean deleteProduct(String productId) {
 		return productDAO.deleteProduct(productId);
+	}
+
+	@Override
+	public List<ProductEntity> findAll() {
+		return productDAO.getProducts();
 	}
 }

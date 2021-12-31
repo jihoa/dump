@@ -1,9 +1,12 @@
 package org.springframework.samples.petclinic.product;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -55,5 +58,12 @@ public class ProductServiceImpl implements ProductService {
 	public boolean deleteProduct(String productId) {
 		boolean deleteProduct = productDataHandler.deleteProduct(productId);
 		return deleteProduct;
+	}
+
+	@Override
+	public ResponseEntity<List<ProductDto>> findAll() {
+		List<ProductEntity> productEntitys = productDataHandler.findAll();
+		//모르겠다..
+		return null;
 	}
 }
