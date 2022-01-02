@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.product.exception.ProductExistedException;
 import org.springframework.samples.petclinic.product.exception.ProductNotFoundException;
 import org.springframework.samples.petclinic.restful.exception.MemberExistedException;
+import org.springframework.samples.petclinic.restful.exception.MemberNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,10 +37,36 @@ public class ProductDAOImpl implements ProductDAO {
 		}
     }
 
-    @Override
+	public ProductEntity get(String productId) {
+
+
+		LOGGER.info("[getProduct] product 정보 요청. productId : {}", productId);
+		ProductEntity productEntity = productRepository.findById(productId)
+			.orElseThrow(() -> new ProductNotFoundException("not found : " + productId));
+
+
+		LOGGER.info("[getProduct] product 정보 요청 완료. productId : {}", productEntity.getProductId());
+//		LOGGER.error("[getProduct] product 정보 요청 ?. productName : {}", productEntity.getProductName());
+//		LOGGER.error("[getProduct] product 정보 요청 ?. productPrice : {}", productEntity.getProductPrice());
+//		LOGGER.error("[getProduct] product 정보 요청 ?. productStock : {}", productEntity.getProductStock());
+		return productEntity;
+	}
+
+
+	@Override
     public ProductEntity getProduct(String productId) {
-        LOGGER.info("[getProduct] product 정보 요청. productId : {}", productId);
-        ProductEntity productEntity = productRepository.getById(productId);
+
+
+//		productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException("not found : "+productId));
+
+
+//        LOGGER.info("[getProduct] product 정보 요청. productId : {}", productId);
+//        ProductEntity productEntity = productRepository.getById(productId);
+		LOGGER.info("[getProduct] product 정보 요청. productId : {}", productId);
+		ProductEntity productEntity = productRepository.findById(productId)
+			.orElseThrow(() -> new ProductNotFoundException("[findById] not found : " + productId));
+
+
         LOGGER.info("[getProduct] product 정보 요청 완료. productId : {}", productEntity.getProductId());
 //		LOGGER.error("[getProduct] product 정보 요청 ?. productName : {}", productEntity.getProductName());
 //		LOGGER.error("[getProduct] product 정보 요청 ?. productPrice : {}", productEntity.getProductPrice());
