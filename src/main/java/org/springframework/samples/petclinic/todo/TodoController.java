@@ -41,17 +41,17 @@ public class TodoController {
 	}
 
 
-//	@ApiOperation(value = "select todoList", notes = "투두 목록 조회")
-//	@GetMapping(value = "/todoList", produces = "text/html;charset=UTF-8")
-//	public ModelAndView getTodos(ModelMap model) {
-//		ModelAndView modelAndView = new ModelAndView("TodoList");
-//		String name = "admin";
-//		List<Todo> actualList = todoService.getTodosByUser(name);
-//
-//		model.put("todoList", actualList);
-//		modelAndView.addObject("todoList", actualList);
-//		return modelAndView;
-//	}
+	@ApiOperation(value = "select todoList", notes = "투두 목록 조회")
+	@GetMapping(value = "/todoList", produces = "text/html;charset=UTF-8")
+	public ModelAndView getTodos(ModelMap model) {
+		ModelAndView modelAndView = new ModelAndView("TodoList");
+		String name = "admin";
+		List<Todo> actualList = todoService.getTodosByUser(name);
+
+		model.put("todoList", actualList);
+		modelAndView.addObject("todoList", actualList);
+		return modelAndView;
+	}
 
 
 	@ApiOperation(value = "add todo", notes = "투두 저장")
