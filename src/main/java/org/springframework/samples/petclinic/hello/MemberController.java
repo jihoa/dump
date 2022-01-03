@@ -33,7 +33,7 @@ public class MemberController {
 
         memberService.join(member);
 
-        return "redirect:/";
+        return "redirect:/hello/members";
     }
 
     @GetMapping("/hello/members")
