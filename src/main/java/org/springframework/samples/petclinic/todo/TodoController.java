@@ -4,6 +4,7 @@ package org.springframework.samples.petclinic.todo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
+import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,8 @@ public class TodoController {
 
 
 	@ApiOperation(value = "REST APT SAMPLE", notes = "API 명세 샘플")
-	@GetMapping(value = "/todoListApi/{name}")//, consumes = MediaType.APPLICATION_JSON_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	@GetMapping(value = "/todoListApi/{name}")
+//, consumes = MediaType.APPLICATION_JSON_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	@ResponseBody
 	public List<Todo> getTodosApi(@PathVariable String name) {
 		//String name = "James";
@@ -54,10 +56,10 @@ public class TodoController {
 //		return modelAndView;
 //	}
 
-
 	@ApiOperation(value = "add todo", notes = "투두 저장")
 	@PostMapping("/addTodo")
 	@ResponseBody
+
 	public ResponseEntity<String> addTodo(ModelMap model, @Valid RequestDto requestDto, BindingResult result) {
 
 //		if (result.hasErrors()) {
@@ -70,8 +72,6 @@ public class TodoController {
 
 		return ResponseEntity.ok("SAVE COMPLETE");
 	}
-
-
 
 
 }

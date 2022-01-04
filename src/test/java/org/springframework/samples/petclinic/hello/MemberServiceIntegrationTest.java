@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.hello;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,19 +19,29 @@ class MemberServiceIntegrationTest {
     @Autowired
 	MemberService memberService;
 
-    @Test
-    void 회원가입() {
-        // given
-        Member member = new Member();
-        member.setName("spring4");
 
-        // when
-        Long savedId = memberService.join(member);
+	@Test
+	@DisplayName("객체생성여부")
+	void Injection() {
+		assertThat(memberService).isNotNull();
+		assertThat(memberRepository).isNotNull();
+	}
 
-        // then
-        Member findMember = memberService.findOne(savedId).get();
-        assertThat(member.getName()).isEqualTo(findMember.getName());
-    }
+	@Test
+	@DisplayName("insert 및 사용자 아이디로 조회")
+	void 회원가입() {
+		// given
+		Member member = new Member();
+		member.setName("spring4");
+
+		// when
+		Long savedId = memberService.join(member);
+
+		// then
+		Member findMember = memberService.findOne(savedId).get();
+		assertThat(member.getId()).isEqualTo(findMember.getId());
+		assertThat(member.getName()).isEqualTo(findMember.getName());
+	}
 
     @Test
     void 중복_회원_예외() {
@@ -46,7 +57,6 @@ class MemberServiceIntegrationTest {
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));
 
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
-
 /*
 
         try {
@@ -55,8 +65,7 @@ class MemberServiceIntegrationTest {
         } catch (IllegalStateException e) {
             assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
         }
-
 */
-
     }
+
 }
