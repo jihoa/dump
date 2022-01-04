@@ -4,11 +4,13 @@ package org.springframework.samples.petclinic.todo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
-import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.samples.petclinic.hello.Member;
+import org.springframework.samples.petclinic.hello.MemberForm;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,6 +73,34 @@ public class TodoController {
 		todoService.saveTodo(requestDto.toEntity());
 
 		return ResponseEntity.ok("SAVE COMPLETE");
+	}
+
+
+	@GetMapping("/hello/todo/{name}")
+	@ApiOperation("TODO")
+	public String list(Model model, @PathVariable String name) {
+
+		List<Todo> todosByUser = todoService.getTodosByUser(name);
+		model.addAttribute("todosByUser", todosByUser);
+		return "members/todoList";
+	}
+
+
+	@GetMapping("/hello/todo/members/new")
+	@ApiOperation("todo_get")
+	public String createForm() {
+		return "members/createTodoForm";
+	}
+
+	@PostMapping("/hello/todo/members/new")
+	@ApiOperation("todo_post")
+	public String create(MemberForm form) {
+
+		Todo todo = new Todo();
+		todo.setUsername(form.getName());
+		todoService.saveTodo(todo);
+
+		return "redirect:/hello/todo/"+todo.getUsername();
 	}
 
 

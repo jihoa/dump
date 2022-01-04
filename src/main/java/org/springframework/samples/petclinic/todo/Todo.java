@@ -25,7 +25,7 @@ public class Todo {
 	@Column(name = "user_name")
 	private String username;
 
-	@NotNull
+//	@NotNull
 	@Size(min = 10, max = 50, message = "10자 이상 입력하세요...")
 	@ApiModelProperty("설명")
 	private String description;
