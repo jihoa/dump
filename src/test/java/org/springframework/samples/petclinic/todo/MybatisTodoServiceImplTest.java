@@ -8,16 +8,30 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
+@SpringBootTest
+@Transactional
 class MybatisTodoServiceImplTest {
+	@Autowired
 	TodoService todoService;
 	//private TodoService todoService = new MybatisTodoServiceImpl();
+	@Autowired
 	TodoMapper todoMapper;
 
 	@BeforeEach
 	void BeforeEach() {
 //		todoMapper = new TodoMapper();
 	}
+
+	@Test
+	@DisplayName("todoService 생성확인")
+	void whenTodoServiceInjected_thenNotNull() {
+		assertThat(todoService).isNotNull();
+		assertThat(todoMapper).isNotNull();
+	}
+
 
 	@Test
 	@DisplayName("사용자 이름으로 조회")
