@@ -5,8 +5,11 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import org.springframework.samples.petclinic.todo.Todo;
 import org.springframework.samples.petclinic.todo.TodoRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+//@Repository
 @Transactional
 public class JpaTodoRepository implements TodoRepository {
 
