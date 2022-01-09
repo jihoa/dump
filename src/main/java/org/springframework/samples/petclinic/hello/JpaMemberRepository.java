@@ -1,11 +1,8 @@
-package me.ekmst.hellospring.repository;
+package org.springframework.samples.petclinic.hello;
 
-import me.ekmst.hellospring.domain.Member;
-
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.stereotype.Repository;
+import javax.persistence.EntityManager;
 
 public class JpaMemberRepository implements MemberRepository {
 

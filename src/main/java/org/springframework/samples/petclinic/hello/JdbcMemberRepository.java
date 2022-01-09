@@ -1,13 +1,15 @@
-package me.ekmst.hellospring.repository;
+package org.springframework.samples.petclinic.hello;
 
-import me.ekmst.hellospring.domain.Member;
-import org.springframework.jdbc.datasource.DataSourceUtils;
-
-import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.sql.DataSource;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 
 public class JdbcMemberRepository implements MemberRepository {
 
