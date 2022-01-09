@@ -49,12 +49,12 @@ import org.springframework.samples.petclinic.model.Person;
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
-	
+
 
 	@Min(value = 20)
 	@Max(value = 60)
 	private Integer age;
-	
+
 	public Integer getAge() {
 		return age;
 	}
@@ -65,12 +65,12 @@ public class Owner extends Person {
 
 	@Column(name = "address")
 	@NotEmpty
-	@Size(min=8, max=30)
+	@Size(min=1, max=30)
 	private String address;
 
 	@Column(name = "city")
 	@NotEmpty
-	@Size(min=8, max=8)
+	@Size(min=1, max=8)
 	private String city;
 
 	@Column(name = "telephone")
