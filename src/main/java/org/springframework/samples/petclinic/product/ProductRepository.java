@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.product;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductRepository extends JpaRepository<ProductEntity, String> {
@@ -8,7 +9,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String> 
 	/* 쿼리 메소드의 주제 키워드 */
 
 	// 조회
-	List<ProductEntity> findByProductName(String name);
+	Optional<ProductEntity> findByProductName(String name);
 	List<ProductEntity> queryByProductName(String name);
 
 	// 존재 유무

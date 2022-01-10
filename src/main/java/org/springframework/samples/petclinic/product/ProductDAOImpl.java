@@ -37,21 +37,29 @@ public class ProductDAOImpl implements ProductDAO {
 		}
     }
 
-	public ProductEntity get(String productId) {
+//	public ProductEntity get(String productId) {
+//
+//
+//		LOGGER.info("[getProduct] product 정보 요청. productId : {}", productId);
+//		ProductEntity productEntity = productRepository.findById(productId)
+//			.orElseThrow(() -> new ProductNotFoundException("not found : " + productId));
+//
+//
+//		LOGGER.info("[getProduct] product 정보 요청 완료. productId : {}", productEntity.getProductId());
+////		LOGGER.error("[getProduct] product 정보 요청 ?. productName : {}", productEntity.getProductName());
+////		LOGGER.error("[getProduct] product 정보 요청 ?. productPrice : {}", productEntity.getProductPrice());
+////		LOGGER.error("[getProduct] product 정보 요청 ?. productStock : {}", productEntity.getProductStock());
+//		return productEntity;
+//	}
 
+	public ProductEntity getProductName(String productName) {
 
-		LOGGER.info("[getProduct] product 정보 요청. productId : {}", productId);
-		ProductEntity productEntity = productRepository.findById(productId)
-			.orElseThrow(() -> new ProductNotFoundException("not found : " + productId));
+		ProductEntity productEntity = productRepository.findByProductName(productName)
+			.orElseThrow(() -> new ProductNotFoundException("[findById] not found : " + productName));
 
-
-		LOGGER.info("[getProduct] product 정보 요청 완료. productId : {}", productEntity.getProductId());
-//		LOGGER.error("[getProduct] product 정보 요청 ?. productName : {}", productEntity.getProductName());
-//		LOGGER.error("[getProduct] product 정보 요청 ?. productPrice : {}", productEntity.getProductPrice());
-//		LOGGER.error("[getProduct] product 정보 요청 ?. productStock : {}", productEntity.getProductStock());
 		return productEntity;
-	}
 
+	}
 
 	@Override
     public ProductEntity getProduct(String productId) {

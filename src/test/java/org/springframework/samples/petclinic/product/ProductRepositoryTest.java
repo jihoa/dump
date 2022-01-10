@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.product;
 
 import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +15,9 @@ class ProductRepositoryTest {
 	@Autowired
 	ProductRepository productRepository;
 
+	private ProductEntity getProduct(String id, int nameNumber, int price, int stock) {
+		return new ProductEntity(id, "상품" + nameNumber, price, stock);
+	}
 	@BeforeEach
 	void GenerateData() {
 		int count = 1;
@@ -29,9 +33,7 @@ class ProductRepositoryTest {
 		productRepository.save(getProduct(Integer.toString(count), count++, 5100, 1700));
 	}
 
-	private ProductEntity getProduct(String id, int nameNumber, int price, int stock) {
-		return new ProductEntity(id, "상품" + nameNumber, price, stock);
-	}
+
 
 	@Test
 	void findTest() {
@@ -42,11 +44,11 @@ class ProductRepositoryTest {
 		}
 		System.out.println("====↑↑ Test Data ↑↑====");
 
-		List<ProductEntity> foundEntities = productRepository.findByProductName("상품4");
+//		List<ProductEntity> foundEntities = productRepository.findByProductName("상품4");
 
-		for(ProductEntity productEntity : foundEntities){
-			System.out.println(productEntity.toString());
-		}
+//		for(ProductEntity productEntity : foundEntities){
+//			System.out.println(productEntity.toString());
+//		}
 
 		List<ProductEntity> queryEntities = productRepository.queryByProductName("상품4");
 

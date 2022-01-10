@@ -12,6 +12,8 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
@@ -32,6 +34,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @ExtendWith(MockitoExtension.class)
 class ProductDAOImplTest {
+
 	@InjectMocks
 	ProductDAOImpl productDAO;
 	@Mock
@@ -77,7 +80,6 @@ class ProductDAOImplTest {
 		productEntity.setProductStock(3000);
 		given(productRepository.findById(productEntity.getProductId())).willReturn(Optional.of(productEntity));//pk값 중복 삽입 조건 처리
 
-
 		log.info("{}", productEntity.getProductId());
 		log.info("{}", productEntity.getProductName());
 		log.info("{}", productEntity.getProductPrice());
@@ -85,8 +87,7 @@ class ProductDAOImplTest {
 		// when
 		//when().thenThrow()를 사용하면 지정한 조건의 메서드가 호출될때 예외를 발생시킨다.
 		// then
-		assertThatThrownBy(() -> productDAO.saveProduct(productEntity))
-			.isInstanceOf(ProductExistedException.class)
+		assertThatThrownBy(() -> productDAO.saveProduct(productEntity)).isInstanceOf(ProductExistedException.class)
 			.hasMessage("product is already joined : " + productEntity.getProductId());
 		verify(productRepository, never()).save(any(ProductEntity.class));
 		// verify() 두 번째 인자 값
@@ -96,7 +97,6 @@ class ProductDAOImplTest {
 		// atLeast(int) - 최소한 지정한 회수 만큼 호출되었는 지 검증.
 		// atMost(int) - 최대 지정한 회수 만큼 호출되었는 지 검증.
 	}
-
 
 
 	@Test
@@ -135,8 +135,7 @@ class ProductDAOImplTest {
 		//when(memberService.get(anyLong())).thenThrow(MemberNotFoundException.class);
 
 		// then
-		assertThatThrownBy(() -> productDAO.getProduct(anyString()))
-			.isInstanceOf(ProductNotFoundException.class)
+		assertThatThrownBy(() -> productDAO.getProduct(anyString())).isInstanceOf(ProductNotFoundException.class)
 			.hasMessage("[findById] not found : ");
 
 		verify(productRepository, times(1)).findById(anyString());
@@ -168,6 +167,23 @@ class ProductDAOImplTest {
 	}
 
 	@Test
+	@DisplayName("해당 상품이 없어 예외 발생")
+	void whenUpdateProductFailed_thenThrowProductNotFoundException() {
+
+		// given
+		final ProductEntity productEntity = new ProductEntity();
+		productEntity.setProductId("1");
+		productEntity.setProductName("name");
+		productEntity.setProductPrice(2000);
+		productEntity.setProductStock(3000);
+		given(productRepository.findById(productEntity.getProductId())).willReturn(Optional.empty());
+
+		assertThatThrownBy(() -> productDAO.getProduct("1")).isInstanceOf(ProductNotFoundException.class).hasMessage("[findById] not found : 1");
+		;
+	}
+
+
+	@Test
 	@DisplayName("상품 삭제 성공")
 	void whenDeleteMemberSuccess_thenCorrectResponse() {
 		// given
@@ -182,10 +198,58 @@ class ProductDAOImplTest {
 
 	}
 
+	@Test
+	@DisplayName("상품 전체 목록 조회 성공")
+	void whenFindByAllListSuccess_thenCorrectResponse() {
+		// given
+		ArrayList<ProductEntity> productEntityList = new ArrayList<>();
 
-	
+		ProductEntity productEntity = new ProductEntity();
+
+		productEntity.setProductId("1");
+		productEntity.setProductName("name");
+		productEntity.setProductPrice(2000);
+		productEntity.setProductStock(3000);
+
+		productEntityList.add(productEntity);
+
+		ProductEntity productEntity1 = new ProductEntity();
+
+		productEntity1.setProductId("2");
+		productEntity1.setProductName("name2");
+		productEntity1.setProductPrice(20000);
+		productEntity1.setProductStock(30000);
+
+		productEntityList.add(productEntity1);
+
+		given(productRepository.findAll()).willReturn(productEntityList);
 
 
+		//when
+		List<ProductEntity> resultList = productDAO.getProducts();
 
+		assertThat(resultList).isNotNull();
+		assertThat(resultList.size()).isEqualTo(productEntityList.size());
+		assertThat(resultList.get(0).getProductName()).isEqualTo(productEntityList.get(0).getProductName());
+	}
+
+
+		@Test
+	@DisplayName("이름으로 상품 정보 조회 성공")
+	void whenFindByUsernameSuccess_thenCorrectResponse() {
+		// given
+		final ProductEntity productEntity = new ProductEntity();
+		productEntity.setProductId("1");
+		productEntity.setProductName("name");
+		productEntity.setProductPrice(2000);
+		productEntity.setProductStock(3000);
+		given(productRepository.findByProductName(productEntity.getProductName())).willReturn(Optional.of(productEntity));
+
+		//when
+		ProductEntity findByProductName = productDAO.getProductName(productEntity.getProductName());
+
+		assertThat(productEntity).isEqualTo(findByProductName);
+		verify(productRepository).findByProductName(any(String.class));
+	}
 
 }

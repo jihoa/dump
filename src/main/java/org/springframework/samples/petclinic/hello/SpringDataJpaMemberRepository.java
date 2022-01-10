@@ -8,4 +8,8 @@ public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Lon
     // JPQL select m from Member m where m.name = ?
     @Override
     Optional<Member> findByName(String name);
+
+//	Optional<Member> findByNameAndId(String name, Long Id);
+
+//	Optional<Member> findByNameOrId(String name, Long id);
 }
