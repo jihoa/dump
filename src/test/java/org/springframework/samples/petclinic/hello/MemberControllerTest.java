@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.ResultActions;
 @WebMvcTest(MemberController.class)
 class MemberControllerTest {
 
+	
 	@Autowired
 	MockMvc mockMvc;
 
