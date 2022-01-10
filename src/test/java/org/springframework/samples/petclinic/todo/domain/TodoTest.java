@@ -24,7 +24,7 @@ class TodoTest {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		Todo todo1 = new Todo();
 		todo1.setUsername("test");
-		todo1.setDescription("10자이상입력");
+		todo1.setDescription("10 and 50");
 
 		Validator validator = createValitor();
 		Set<ConstraintViolation<Todo>> constraintViolations = validator.validate(todo1);
@@ -33,7 +33,7 @@ class TodoTest {
 		ConstraintViolation<Todo> violation = constraintViolations.iterator().next();
 		assertThat(violation.getPropertyPath()).hasToString("description");
 		//@NotNull
-		assertThat(violation.getMessage()).hasToString("10자 이상 입력하세요...");
+		assertThat(violation.getMessage()).hasToString("size must be between 10 and 50");
 	}
 
     @Test
@@ -41,7 +41,7 @@ class TodoTest {
         LocaleContextHolder.setLocale(Locale.KOREA);
         Todo todo1 = new Todo();
         todo1.setUsername("test");
-		todo1.setDescription("");
+//		todo1.setDescription("");
 
         Validator validator = createValitor();
         Set<ConstraintViolation<Todo>> constraintViolations = validator.validate(todo1);
@@ -59,7 +59,7 @@ class TodoTest {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		Todo todo1 = new Todo();
 		todo1.setUsername("test");
-		todo1.setDescription("");
+//		todo1.setDescription("");
 
 		Validator validator = createValitor();
 		Set<ConstraintViolation<Todo>> constraintViolations = validator.validate(todo1);
