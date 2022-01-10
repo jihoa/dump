@@ -24,11 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MemberController {
     final MemberService memberService;
-    final MemberRepository memberRepository;
 
-    public MemberController(MemberService memberService, MemberRepository memberRepository) {
+    public MemberController(MemberService memberService) {
         this.memberService = memberService;
-        this.memberRepository = memberRepository;
     }
 
     @GetMapping(value = "/members",  produces = MediaType.APPLICATION_JSON_VALUE)

@@ -32,21 +32,18 @@ import springfox.documentation.swagger2.mappers.ModelMapper;
  * @date : 2021-05-24 오후 3:24
  * @author : YHKIM
  **/
-@WebMvcTest//(TodoController.class)
+@WebMvcTest(TodoController.class)
 class TodoControllerTest /*extends AbstractControllerTest*/ {
-	@MockBean
-	TodoService todoService;
-	@MockBean
-	ModelMapper modelMapper;
-	@Autowired
-	TodoController todoController;
 	@Autowired
 	MockMvc mockMvc;
+
+	@MockBean
+	TodoService todoService;
 
 	@Test
 	@DisplayName("TodoController 빈 생성")
 	void whenTodoControllerInjected_thenNotNull() {
-		assertThat(todoController).isNotNull();
+		assertThat(TodoController.class).isNotNull();
 	}
 
 	@Test
@@ -64,14 +61,14 @@ class TodoControllerTest /*extends AbstractControllerTest*/ {
 		given(todoService.getTodosByUser("admin")).willReturn(actualList);
 
 		// when
-		final ResultActions actions = mockMvc.perform(get("/todoList"));
+		final ResultActions actions = mockMvc.perform(get("/hello/todo/"+todo.getUsername()));
 
 		// then
-		actions.andDo(print())
+		actions//.andDo(print())
 			.andExpect(status().isOk())
-			.andExpect(view().name("TodoList"))
-			.andExpect(model().attributeExists("todoList"))
-			.andExpect(model().attribute("todoList", IsCollectionWithSize.hasSize(1)));
+			.andExpect(view().name("members/todoList"))
+			.andExpect(model().attributeExists("todosByUser"))
+			.andExpect(model().attribute("todosByUser", IsCollectionWithSize.hasSize(1)));
 
 
 		// verify

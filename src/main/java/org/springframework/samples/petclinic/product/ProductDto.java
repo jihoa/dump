@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.product;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,6 +28,7 @@ public class ProductDto {
   private String productId;
 
   @NotNull
+  @NotBlank(message = "필수입력사항입니다.")
   private String productName;
 
   @NotNull

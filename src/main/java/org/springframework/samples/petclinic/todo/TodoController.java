@@ -24,10 +24,6 @@ import springfox.documentation.swagger2.mappers.ModelMapper;
 @Controller
 @Api("TodoCon")
 public class TodoController {
-
-	@Autowired
-	ModelMapper userMapper;
-
 	private final TodoService todoService;
 
 	public TodoController(TodoService todoService) {
