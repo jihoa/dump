@@ -33,6 +33,7 @@ class JpaTodoRepositoryTest {
     }
 
     @Test
+	@Disabled
     @DisplayName("생성한 findByUsername 메서드 정상 작동 확인")
     void whenFindByUsernameSuccess_thenCorrectResponse() {
         // given
