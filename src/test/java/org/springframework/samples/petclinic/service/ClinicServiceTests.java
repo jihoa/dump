@@ -28,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -114,6 +115,7 @@ class ClinicServiceTests {
 	}
 
 	@Test
+//	@Disabled("JOIN!!!!")
 	void shouldFindSingleOwnerWithPet() {
 		Owner owner = this.owners.findById(1);
 		assertThat(owner.getLastName()).startsWith("Franklin");
@@ -157,6 +159,7 @@ class ClinicServiceTests {
 	}
 
 	@Test
+//	@Disabled("JOIN!!!!")
 	void shouldFindPetWithCorrectId() {
 		Pet pet7 = this.pets.findById(7);
 		assertThat(pet7.getName()).startsWith("Samantha");
