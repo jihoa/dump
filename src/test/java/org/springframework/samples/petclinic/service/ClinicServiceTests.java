@@ -22,6 +22,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -73,11 +74,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 
-@Disabled
-@DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
+@DataJpaTest//(includeFilters = @ComponentScan.Filter(Service.class))
 // Ensure that if the mysql profile is active we connect to the real database:
-@AutoConfigureTestDatabase(replace = Replace.NONE)
+//@AutoConfigureTestDatabase(replace = Replace.NONE)
+//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class ClinicServiceTests {
+
 
 	@Autowired
 	protected OwnerRepository owners;
@@ -92,6 +94,15 @@ class ClinicServiceTests {
 	protected VetRepository vets;
 
 	Pageable pageable;
+
+
+	@Test
+	@DisplayName("container exist")
+	void Container_exist() {
+		assertThat(owners).isNotNull();
+	}
+
+
 
 	@Test
 	void shouldFindOwnersByLastName() {
@@ -121,8 +132,8 @@ class ClinicServiceTests {
 		owner.setFirstName("Sam");
 		owner.setLastName("Schultz");
 		owner.setAddress("4, Evans Street");
-		owner.setCity("Wollongong");
-		owner.setTelephone("4444444444");
+		owner.setCity("Wollong");
+		owner.setTelephone("01030214390");
 		this.owners.save(owner);
 		assertThat(owner.getId().longValue()).isNotEqualTo(0);
 
