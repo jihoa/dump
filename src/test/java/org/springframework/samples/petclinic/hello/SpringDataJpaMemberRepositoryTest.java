@@ -34,7 +34,7 @@ class SpringDataJpaMemberRepositoryTest {
 		Member member = new Member();
 
 		//member.setId(1L);
-		member.setName("spring");
+		member.setName("spring10character");
 
 		Member savedMember = repository.save(member);
 
@@ -57,7 +57,7 @@ class SpringDataJpaMemberRepositoryTest {
 		Member member = new Member();
 
 		//member.setId(1L);
-		member.setName("spring");
+		member.setName("spring10character");
 
 		Member savedMember = repository.save(member);
 
@@ -71,11 +71,11 @@ class SpringDataJpaMemberRepositoryTest {
 	@DisplayName("ID 생성 전략 확인")
 	void ID_primarykey() {
 		Member member1 = new Member();
-		member1.setName("spring");
+		member1.setName("spring10character");
 		Member savedMember1 = repository.save(member1);
 
 		Member member2 = new Member();
-		member2.setName("spring");
+		member2.setName("spring10character");
 		Member savedMember2 = repository.save(member2);
 
 		assertThat(1).isEqualTo(Math.abs(savedMember2.getId() - savedMember1.getId()));

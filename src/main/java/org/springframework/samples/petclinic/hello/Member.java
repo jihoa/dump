@@ -17,7 +17,7 @@ public class Member {
 
 	@ApiModelProperty("NAME")
 	@NotNull
-	@Size(min = 10, max =  50)
+	@Size(min = 10, max =  50)//check..
     private String name;
 
     public Long getId() {
