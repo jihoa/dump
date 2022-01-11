@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.product;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.springframework.transaction.annotation.Propagation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,16 +12,19 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.samples.petclinic.restful.Member;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Propagation;
 
 //@SpringBootTest
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
+//@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles(value = "dev")
 class ProductRepositoryTest {
@@ -116,7 +120,7 @@ class ProductRepositoryTest {
 		System.out.println("====↑↑ Test Data ↑↑====");
 
 		System.out.println(productRepository.existsByProductName("상품4"));
-		System.out.println(productRepository.existsByProductName("상품2"));
+		System.out.println(productRepository.existsByProductName("상품2"));// limit ?
 	}
 
 	@Test
