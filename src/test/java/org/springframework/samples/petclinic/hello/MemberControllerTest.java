@@ -1,7 +1,6 @@
 package org.springframework.samples.petclinic.hello;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -13,14 +12,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.samples.petclinic.todo.TodoController;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 @WebMvcTest(MemberController.class)
 class MemberControllerTest {
 
-	
+
 	@Autowired
 	MockMvc mockMvc;
 
@@ -53,6 +51,4 @@ class MemberControllerTest {
 
 		verify(memberService).findMembers();
 	}
-
-
 }
