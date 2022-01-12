@@ -2,9 +2,11 @@ package org.springframework.samples.petclinic.todo;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.samples.petclinic.hello.Member;
 import org.springframework.stereotype.Service;
 
 //@Service
+//NON-USED
 public class MybatisTodoServiceImpl implements TodoService{
 
 	private final TodoMapper todoMapper;
@@ -35,6 +37,11 @@ public class MybatisTodoServiceImpl implements TodoService{
 	public void saveTodo(Todo todo) {
 		validateDuplicateMember(todo);
 		todoMapper.save(todo);
+	}
+
+	@Override
+	public List<Todo> findAll() {
+		return null;
 	}
 
 }

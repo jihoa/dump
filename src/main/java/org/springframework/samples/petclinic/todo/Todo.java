@@ -21,11 +21,13 @@ public class Todo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id ;
+
+	@NotNull
 	@ApiModelProperty(value = "username", name = "username", dataType = "String", example = "yhkim")
 	@Column(name = "user_name")
 	private String username;
 
-	@NotNull
+//	@NotNull
 	@Size(min = 10, max = 50)
 	@ApiModelProperty("설명")
 	private String description;

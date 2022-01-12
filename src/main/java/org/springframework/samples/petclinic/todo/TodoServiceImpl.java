@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.samples.petclinic.hello.Member;
 
 
 @Slf4j
@@ -38,6 +39,11 @@ public class TodoServiceImpl implements TodoService{
 		log.info("{} {}", todo.getUsername(), todo.getDescription());
 //		validateDuplicateMember(todo);
 		todoRepository.save(todo);
+	}
+
+	@Override
+	public List<Todo> findAll() {
+		return todoRepository.findAll();
 	}
 
 //	private void validateDuplicateMember(Todo todo) {

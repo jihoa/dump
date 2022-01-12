@@ -14,4 +14,6 @@ public interface TodoRepository {
 
 	void delete(Todo todo);
 
+	//implements CrudRepo // update 메소드 사용 불가..
+
 }

@@ -14,6 +14,7 @@ public class MybatisTodoRepository implements TodoRepository {
 		this.todoMapper = todoMapper;
 	}
 
+	//널
 	@Override
 	public List<Todo> findAll() {
 		return null;
@@ -24,6 +25,7 @@ public class MybatisTodoRepository implements TodoRepository {
 		return todoMapper.getTodosByUser(username);
 	}
 
+	//널
 	@Override
 	public Optional<Todo> findById(long id) {
 		return Optional.empty();
@@ -37,6 +39,7 @@ public class MybatisTodoRepository implements TodoRepository {
 		return null;
 	}
 
+	//널
 	@Override
 	public void delete(Todo todo) {
 
