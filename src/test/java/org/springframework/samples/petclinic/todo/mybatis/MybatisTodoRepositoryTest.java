@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.todo;
+package org.springframework.samples.petclinic.todo.mybatis;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,15 +10,19 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.samples.petclinic.todo.Todo;
+import org.springframework.samples.petclinic.todo.TodoMapper;
+import org.springframework.samples.petclinic.todo.TodoRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Disabled("MybatisTodoRepository로 대체완료..")
+
+@Disabled("TodoSpringConfig 빈 생성 필수")
 @SpringBootTest
 @Transactional
-class MybatisTodoServiceImplTest {
+class MybatisTodoRepositoryTest {
+
 	@Autowired
-	TodoService todoService;
-	//private TodoService todoService = new MybatisTodoServiceImpl();
+	TodoRepository todoRepository;
 	@Autowired
 	TodoMapper todoMapper;
 
@@ -30,9 +34,11 @@ class MybatisTodoServiceImplTest {
 	@Test
 	@DisplayName("todoService 생성확인")
 	void whenTodoServiceInjected_thenNotNull() {
-		assertThat(todoService).isNotNull();
+		assertThat(todoRepository).isNotNull();
 		assertThat(todoMapper).isNotNull();
 	}
+
+
 
 
 	@Test
@@ -44,17 +50,17 @@ class MybatisTodoServiceImplTest {
 		todo1.setUsername("arori tester");
 		todo1.setDescription("mybatis 연동 테스트");
 		todo1.setTargetDate(new Date());
-		todoService.saveTodo(todo1);
+		todoRepository.save(todo1);
 		//given(todoMapper.getTodosByUser(todo1.getUsername())).willReturn(todoList);
 
 		// when
 		List<Todo> resultList= todoMapper.getTodosByUser(todo1.getUsername());
 		// then
 
-//		assertThat(todo1.getId()).isEqualTo(resultList.get(0).getId());
+		assertThat(todo1.getId()).isEqualTo(resultList.get(0).getId());
 		assertThat(todo1.getUsername()).isEqualTo(resultList.get(0).getUsername());
 		assertThat(todo1.getDescription()).isEqualTo(resultList.get(0).getDescription());
-//		assertThat(todo1.getTargetDate()).isEqualTo(resultList.get(0).getTargetDate());
+		assertThat(todo1.getTargetDate()).isEqualTo(resultList.get(0).getTargetDate());
 		//verify(todoMapper).getTodosByUser(any(String.class));
 	}
 

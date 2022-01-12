@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.samples.petclinic.todo.Todo;
 import org.springframework.samples.petclinic.todo.TodoRepository;
 
-public interface SpringDataJpaTodoRepository extends CrudRepository<Todo, Long> , TodoRepository {
+public interface SpringDataJpaTodoRepository extends CrudRepository<Todo, Long> , TodoRepository { //TodoRepo 상속하여야 빈 객체 생성 완료.
     List<Todo> findByUsername(String username);
 }

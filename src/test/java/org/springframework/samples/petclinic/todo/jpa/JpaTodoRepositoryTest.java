@@ -16,14 +16,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.samples.petclinic.todo.Todo;
 import org.springframework.samples.petclinic.todo.TodoRepository;
 
-@Disabled
+@Disabled("TodoSpringConfig Bean 생성 필수")
 @DataJpaTest
 //@SpringBootTest
 class JpaTodoRepositoryTest {
     @Autowired
 	TodoRepository todoRepository ;
     @Autowired
-    private EntityManager entityManager;
+    EntityManager entityManager;
 
     @Test
     @DisplayName("JpaTodoRepository 생성확인")
@@ -33,7 +33,6 @@ class JpaTodoRepositoryTest {
     }
 
     @Test
-	@Disabled
     @DisplayName("생성한 findByUsername 메서드 정상 작동 확인")
     void whenFindByUsernameSuccess_thenCorrectResponse() {
         // given
