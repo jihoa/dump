@@ -11,7 +11,6 @@ public class MybatisTodoServiceImpl implements TodoService{
 	@Autowired
 	TodoMapper todoMapper;
 
-	@Override
 	public Optional<Todo> getTodoByUserOne(String name) {
 		return todoMapper.getTodosByUserOne(name);
 	}
@@ -20,11 +19,6 @@ public class MybatisTodoServiceImpl implements TodoService{
 	@Override
 	public List<Todo> getTodosByUser(String name) {
 		return todoMapper.getTodosByUser(name);
-	}
-
-	@Override
-	public void updateTodo(Todo todo) {
-
 	}
 
 
