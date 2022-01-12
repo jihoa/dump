@@ -2,14 +2,17 @@ package org.springframework.samples.petclinic.todo;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MybatisTodoServiceImpl implements TodoService{
 
-	@Autowired
-	TodoMapper todoMapper;
+	private final TodoMapper todoMapper;
+
+	public MybatisTodoServiceImpl(TodoMapper todoMapper) {
+		this.todoMapper = todoMapper;
+	}
+
 
 	public Optional<Todo> getTodoByUserOne(String name) {
 		return todoMapper.getTodosByUserOne(name);
