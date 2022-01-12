@@ -16,6 +16,8 @@ import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.samples.petclinic.restful.Member;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -83,6 +85,91 @@ class ProductRepositoryTest {
 		Optional<ProductEntity> findByProductName = productRepository.findByProductName("not exist product");
 		assertThat(Optional.empty()).isEqualTo(findByProductName);
 	}
+
+
+//	/* 정렬과 페이징 */
+//	@Test
+//	void orderByTest() {
+//		List<Product> foundAll = productRepository.findAll();
+//		System.out.println("====↓↓ Test Data ↓↓====");
+//		for (Product product : foundAll) {
+//			System.out.println(product.toString());
+//		}
+//		System.out.println("====↑↑ Test Data ↑↑====");
+//
+//		List<Product> foundProducts = productRepository.findByNameContainingOrderByStockAsc("상품");
+//		for(Product product : foundProducts){
+//			System.out.println(product);
+//		}
+//
+//		foundProducts = productRepository.findByNameContainingOrderByStockDesc("상품");
+//		for(Product product : foundProducts){
+//			System.out.println(product);
+//		}
+//
+//		foundProducts = productRepository.findByNameContainingOrderByPriceAscStockDesc("상품");
+//		for(Product product : foundProducts){
+//			System.out.println(product);
+//		}
+//	}
+//
+//	@Test
+//	void multiOrderByTest() {
+//		List<Product> foundAll = productRepository.findAll();
+//		System.out.println("====↓↓ Test Data ↓↓====");
+//		for (Product product : foundAll) {
+//			System.out.println(product.toString());
+//		}
+//		System.out.println("====↑↑ Test Data ↑↑====");
+//
+//		List<Product> foundProducts = productRepository.findByNameContainingOrderByPriceAscStockDesc("상품");
+//		for(Product product : foundProducts){
+//			System.out.println(product);
+//		}
+//	}
+//
+//	@Test
+//	void orderByWithParameterTest() {
+//		List<Product> foundAll = productRepository.findAll();
+//		System.out.println("====↓↓ Test Data ↓↓====");
+//		for (Product product : foundAll) {
+//			System.out.println(product.toString());
+//		}
+//		System.out.println("====↑↑ Test Data ↑↑====");
+//
+//		List<Product> foundProducts = productRepository.findByNameContaining("상품", Sort.by(Order.asc("price")));
+//		for(Product product : foundProducts){
+//			System.out.println(product);
+//		}
+//
+//		foundProducts = productRepository.findByNameContaining("상품", Sort.by(Order.asc("price"), Order.asc("stock")));
+//		for(Product product : foundProducts){
+//			System.out.println(product);
+//		}
+//	}
+//
+//	@Test
+//	void pagingTest() {
+//		List<Product> foundAll = productRepository.findAll();
+//		System.out.println("====↓↓ Test Data ↓↓====");
+//		for (Product product : foundAll) {
+//			System.out.println(product.toString());
+//		}
+//		System.out.println("====↑↑ Test Data ↑↑====");
+//
+//		List<Product> foundProducts = productRepository.findByPriceGreaterThan(200, PageRequest.of(0, 2));
+//		for(Product product : foundProducts){
+//			System.out.println(product);
+//		}
+//
+//		foundProducts = productRepository.findByPriceGreaterThan(200, PageRequest.of(2, 2));
+//		for(Product product : foundProducts){
+//			System.out.println(product);
+//		}
+//	}
+
+	//Paging 끝.
+
 
 
 	@Test
