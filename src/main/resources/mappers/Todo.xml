@@ -14,15 +14,15 @@
     </select>
 
 
-	<select id="getTodosByUserOne" resultType="org.springframework.samples.petclinic.todo.Todo">
-		SELECT
-			id
-			 , user_name
-			 , description
-			 , target_date
-		FROM TODO
-		WHERE user_name = #{username}
-	</select>
+<!--	<select id="getTodosByUserOne" resultType="org.springframework.samples.petclinic.todo.Todo">-->
+<!--		SELECT-->
+<!--			id-->
+<!--			 , user_name-->
+<!--			 , description-->
+<!--			 , target_date-->
+<!--		FROM TODO-->
+<!--		WHERE user_name = #{username}-->
+<!--	</select>-->
 
 
 	<!--    <select id="getTodoById" resultType="com.asianaidt.springmvc.step03.todo.domain.Todo">-->

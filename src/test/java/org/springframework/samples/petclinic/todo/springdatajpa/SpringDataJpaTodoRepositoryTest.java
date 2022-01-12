@@ -12,10 +12,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.samples.petclinic.todo.Todo;
+import org.springframework.samples.petclinic.todo.TodoRepository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -23,12 +22,12 @@ import org.springframework.transaction.annotation.Transactional;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class SpringDataJpaTodoRepositoryTest {
     @Autowired
-    SpringDataJpaTodoRepository springDataJpaTodoRepository;
+	TodoRepository todoRepository;
 
     @Test
     @DisplayName("todoRespository 생성확인")
     void whenTodoRepositoryInjected_thenNotNull() {
-        Assertions.assertThat(springDataJpaTodoRepository).isNotNull();
+        Assertions.assertThat(todoRepository).isNotNull();
     }
 
     @Test
@@ -41,7 +40,7 @@ class SpringDataJpaTodoRepositoryTest {
         todo.setTargetDate(new Date());
 
         // when
-        Todo savedTodo = springDataJpaTodoRepository.save(todo);
+        Todo savedTodo = todoRepository.save(todo);
 
         // then
         assertThat(todo.getUsername()).isEqualTo(savedTodo.getUsername());
@@ -57,10 +56,10 @@ class SpringDataJpaTodoRepositoryTest {
         todo.setUsername("name");
         todo.setDescription("10자 이상 설명 입력하세요.");
         todo.setTargetDate(new Date());
-        Todo savedTodo = springDataJpaTodoRepository.save(todo);
+        Todo savedTodo = todoRepository.save(todo);
 
         // when
-        List<Todo> findByUsername = springDataJpaTodoRepository.findByUsername(todo.getUsername());
+        List<Todo> findByUsername = todoRepository.findByUsername(todo.getUsername());
 
         // then
         assertThat(todo.getUsername()).isEqualTo(findByUsername.get(0).getUsername());
@@ -70,7 +69,7 @@ class SpringDataJpaTodoRepositoryTest {
     @Test
     @DisplayName("Optaion.empty() 확인")
     void whenFindByUsernameFailure_thenCorrectResponse() {
-        List<Todo> findByUsername = springDataJpaTodoRepository.findByUsername("not exist member");
+        List<Todo> findByUsername = todoRepository.findByUsername("not exist member");
         assertThat(Collections.emptyList()).isEqualTo(findByUsername);
     }
 
@@ -81,13 +80,13 @@ class SpringDataJpaTodoRepositoryTest {
         todo1.setUsername("name");
         todo1.setDescription("10자 이상 설명 입력하세요.");
         todo1.setTargetDate(new Date());
-        Todo savedTodo1 = springDataJpaTodoRepository.save(todo1);
+        Todo savedTodo1 = todoRepository.save(todo1);
 
         Todo todo2 = new Todo();
         todo2.setUsername("name");
         todo2.setDescription("10자 이상 설명 입력하세요.");
         todo2.setTargetDate(new Date());
-        Todo savedTodo2 = springDataJpaTodoRepository.save(todo2);
+        Todo savedTodo2 = todoRepository.save(todo2);
 
         assertThat(1).isEqualTo(Math.abs(savedTodo1.getId() - savedTodo2.getId()));
 

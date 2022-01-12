@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class MybatisTodoServiceImpl implements TodoService{
 
 	private final TodoMapper todoMapper;

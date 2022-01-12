@@ -5,12 +5,7 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import org.springframework.samples.petclinic.todo.Todo;
 import org.springframework.samples.petclinic.todo.TodoRepository;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-@Repository
-@Transactional
 public class JpaTodoRepository implements TodoRepository {
 
     private final EntityManager entityManager;
@@ -58,7 +53,6 @@ public class JpaTodoRepository implements TodoRepository {
                 .setParameter("id", todo.getId() );
     }
 
-    @Override
     public void update(Todo todo) {
         StringBuilder sql = new StringBuilder(1024);
         sql.append("update TODO set description = :description and taretDate = :targetDate where id = :id");

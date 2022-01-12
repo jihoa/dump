@@ -29,6 +29,7 @@ public class BasicTodoRepository implements TodoRepository {
 
 	@Override
 	public List<Todo> findByUsername(String username) {
+
 		return baseData.values().stream()
 			.filter(todo -> todo.getUsername().equals(username))
 			.collect(Collectors.toList());
@@ -44,11 +45,6 @@ public class BasicTodoRepository implements TodoRepository {
 	@Override
 	public void delete(Todo todo) {
 		baseData.remove(todo.getId());
-	}
-
-	@Override
-	public void update(Todo todo) {
-
 	}
 
 	public void clearData() {
