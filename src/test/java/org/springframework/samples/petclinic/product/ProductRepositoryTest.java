@@ -86,19 +86,33 @@ class ProductRepositoryTest {
 		assertThat(Optional.empty()).isEqualTo(findByProductName);
 	}
 
+	@Test
+	public void queryTest() {
+		List<ProductEntity> foundAll = productRepository.findAll();
+
+		for (ProductEntity productEntity : foundAll) {
+			System.out.println(productEntity.toString());
+		}
+		List<ProductEntity> foundProducts = productRepository.findByPriceBasis();
+
+		for (ProductEntity productEntity : foundProducts) {
+			System.out.println(productEntity);
+		}
+	}
+
 
 //	/* 정렬과 페이징 */
 //	@Test
 //	void orderByTest() {
-//		List<Product> foundAll = productRepository.findAll();
+//		List<ProductEntity> foundAll = productRepository.findAll();
 //		System.out.println("====↓↓ Test Data ↓↓====");
-//		for (Product product : foundAll) {
+//		for (ProductEntity product : foundAll) {
 //			System.out.println(product.toString());
 //		}
 //		System.out.println("====↑↑ Test Data ↑↑====");
 //
-//		List<Product> foundProducts = productRepository.findByNameContainingOrderByStockAsc("상품");
-//		for(Product product : foundProducts){
+//		List<ProductEntity> foundProducts = productRepository.findByNameContainingOrderByStockAsc("상품");
+//		for(ProductEntity product : foundProducts){
 //			System.out.println(product);
 //		}
 //

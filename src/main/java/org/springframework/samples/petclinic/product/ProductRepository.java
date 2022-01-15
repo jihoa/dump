@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.product;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface ProductRepository extends JpaRepository<ProductEntity, String> {
 
@@ -52,10 +53,13 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String> 
 	List<ProductEntity> findByProductNameContaining(String name);
 
 
+	@Query("SELECT p FROM ProductEntity p WHERE p.productPrice > 2000")
+	List<ProductEntity> findByPriceBasis();
+
 //	/* 정렬과 페이징 */
 //
 //	// Asc : 오름차순, Desc : 내림차순
-//	List<Product> findByNameContainingOrderByStockAsc(String name);
+//	List<ProductEntity> findByNameContainingOrderByStockAsc(String name);
 //	List<Product> findByNameContainingOrderByStockDesc(String name);
 //
 //	// 여러 정렬 기준 사용
