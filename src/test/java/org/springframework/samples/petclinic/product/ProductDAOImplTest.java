@@ -234,22 +234,22 @@ class ProductDAOImplTest {
 	}
 
 
-		@Test
-	@DisplayName("이름으로 상품 정보 조회 성공")
-	void whenFindByUsernameSuccess_thenCorrectResponse() {
-		// given
-		final ProductEntity productEntity = new ProductEntity();
-		productEntity.setProductId("1");
-		productEntity.setProductName("name");
-		productEntity.setProductPrice(2000);
-		productEntity.setProductStock(3000);
-		given(productRepository.findByProductName(productEntity.getProductName())).willReturn(Optional.of(productEntity));
-
-		//when
-		ProductEntity findByProductName = productDAO.getProductName(productEntity.getProductName());
-
-		assertThat(productEntity).isEqualTo(findByProductName);
-		verify(productRepository).findByProductName(any(String.class));
-	}
+//	@Test
+//	@DisplayName("이름으로 상품 정보 조회 성공")
+//	void whenFindByUsernameSuccess_thenCorrectResponse() {
+//		// given
+//		final ProductEntity productEntity = new ProductEntity();
+//		productEntity.setProductId("1");
+//		productEntity.setProductName("name");
+//		productEntity.setProductPrice(2000);
+//		productEntity.setProductStock(3000);
+//		given(productRepository.findByProductName(productEntity.getProductName())).willReturn(Optional.of(productEntity));
+//
+//		//when
+//		ProductEntity findByProductName = productDAO.getProductName(productEntity.getProductName());
+//
+//		assertThat(productEntity).isEqualTo(findByProductName);
+//		verify(productRepository).findByProductName(any(String.class));
+//	}
 
 }

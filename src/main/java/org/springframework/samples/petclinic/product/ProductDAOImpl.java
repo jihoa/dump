@@ -52,14 +52,14 @@ public class ProductDAOImpl implements ProductDAO {
 //		return productEntity;
 //	}
 
-	public ProductEntity getProductName(String productName) {
-
-		ProductEntity productEntity = productRepository.findByProductName(productName)
-			.orElseThrow(() -> new ProductNotFoundException("[findById] not found : " + productName));
-
-		return productEntity;
-
-	}
+//	public ProductEntity getProductName(String productName) {
+//
+//		ProductEntity productEntity = productRepository.findByProductName(productName)
+//			.orElseThrow(() -> new ProductNotFoundException("[findById] not found : " + productName));
+//
+//		return productEntity;
+//
+//	}
 
 	@Override
     public ProductEntity getProduct(String productId) {
