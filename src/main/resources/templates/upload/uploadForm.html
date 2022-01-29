@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +27,23 @@
         <button class="btn btn-default" data-upload-btn="getUploadedFiles">getUploadedFiles</button>
         <button class="btn btn-default" data-upload-btn="removeFileAll">removeFileAll</button>
     </div>
+    <!-- customizing?-->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary closeModal">취소</button>
+      <button type="button" class="btn btn-secondary" id="button-save" data-dismiss="modal">저장</button>
+    </div>
+
+
 <script type="text/javascript">
+  // $("#button-save").click(
+  //   function () {
+  //     let param = $("button-save").val();
+  //   }
+  // );
+
+
+
+
     $(function () {
         var API_SERVER = "http://localhost:8080";
         var DIALOG = new ax5.ui.dialog({
@@ -137,6 +153,10 @@
         $.ajax({
             method: "GET",
             url: API_SERVER + "/api/v1/ax5uploader",
+            data : {
+              subPath : "NOTICE",
+              uploadType: "UPT"
+            },
             success: function (res) {
  
                 console.log(res);

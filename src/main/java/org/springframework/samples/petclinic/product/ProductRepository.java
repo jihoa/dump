@@ -1,7 +1,8 @@
 package org.springframework.samples.petclinic.product;
 
 import java.util.List;
-import java.util.Optional;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -58,18 +59,37 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String> 
 	@Query("SELECT p FROM ProductEntity p WHERE p.productPrice > 2000")
 	List<ProductEntity> findByPriceBasis();
 
+//	@Query(value = "SELECT * FROM product p WHERE p.price > 2000", nativeQuery = true)
+//	List<ProductEntity> findByPriceBasisNativeQuery();
+
+//	@Query("SELECT p FROM product p WHERE p.price > ?1")
+//	List<ProductEntity> findByPriceWithParameter(Integer price);
+//
+//	@Query("SELECT p FROM Product p WHERE p.price > :price")
+//	List<Product> findByPriceWithParameterNaming(Integer price);
+//
+//	@Query("SELECT p FROM Product p WHERE p.price > :pri")
+//	List<Product> findByPriceWithParameterNaming2(@Param("pri") Integer price);
+//
+//	@Query(value = "SELECT * FROM product WHERE price > :price",
+//		countQuery = "SELECT count(*) FROM product WHERE price > ?1",
+//		nativeQuery = true)
+//	List<Product> findByPriceWithParameterPaging(Integer price, Pageable pageable);
+
+
+
 //	/* 정렬과 페이징 */
 //
 //	// Asc : 오름차순, Desc : 내림차순
-//	List<ProductEntity> findByNameContainingOrderByStockAsc(String name);
+	List<ProductEntity> findByProductNameContainingOrderByProductStockAsc(String name);
 //	List<Product> findByNameContainingOrderByStockDesc(String name);
 //
 //	// 여러 정렬 기준 사용
 //	List<Product> findByNameContainingOrderByPriceAscStockDesc(String name);
 //
 //	// 매개변수를 활용한 정렬
-//	List<Product> findByNameContaining(String name, Sort sort);
+	List<ProductEntity> findByProductNameContaining(String name, Sort sort);
 //
 //	// 페이징 처리하기
-//	List<Product> findByPriceGreaterThan(Integer price, Pageable pageable);
+	List<ProductEntity> findByProductPriceGreaterThan(Integer price, Pageable pageable);
 }
