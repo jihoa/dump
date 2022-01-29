@@ -2,9 +2,7 @@ package org.springframework.samples.petclinic.product;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.atLeastOnce;
@@ -24,10 +22,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.samples.petclinic.product.exception.ProductExistedException;
 import org.springframework.samples.petclinic.product.exception.ProductNotFoundException;
-import org.springframework.samples.petclinic.restful.Member;
-import org.springframework.samples.petclinic.restful.MemberRepository;
-import org.springframework.samples.petclinic.restful.exception.MemberExistedException;
-import org.springframework.samples.petclinic.restful.exception.MemberNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j

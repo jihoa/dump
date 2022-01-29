@@ -1,7 +1,5 @@
 package org.springframework.samples.petclinic.sample;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
 class SampleControllerTest {

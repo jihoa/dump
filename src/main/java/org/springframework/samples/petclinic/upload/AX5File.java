@@ -2,13 +2,12 @@ package org.springframework.samples.petclinic.upload;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import org.apache.commons.io.FilenameUtils;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import lombok.Data;
+import org.apache.commons.io.FilenameUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class AX5File implements Comparable {
@@ -22,6 +21,9 @@ public class AX5File implements Comparable {
     private long fileSize;
 
     private String createdAt;
+
+	//add
+	private String subPath;
 
     @JsonIgnore
     private File file;

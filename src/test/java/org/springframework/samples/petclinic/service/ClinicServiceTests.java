@@ -109,6 +109,7 @@ class ClinicServiceTests {
 
 	@Test
 //	@Disabled("JOIN!!!!")
+	//test
 	void shouldFindSingleOwnerWithPet() {
 		Owner owner = this.owners.findById(1);
 		assertThat(owner.getLastName()).startsWith("Franklin");

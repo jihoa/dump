@@ -1,17 +1,23 @@
 package org.springframework.samples.petclinic.upload;
 
-import io.swagger.annotations.ApiResponse;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/ax5uploader")
@@ -19,6 +25,18 @@ public class AX5UploaderController {
 
     @Autowired
     private FileUploadService fileUploadService;
+
+//	@PostMapping
+//	public String upload(@RequestParam MultipartFile file, @RequestParam String subPath, @RequestParam String uploadType, HttpSession session) throws IOException {
+//		ArrayList<AX5File> fileList = new ArrayList<>();
+//
+//		String uploadTempDir = "";
+//
+//		if (session.getAttribute("uploadTempDir")==null) {
+//			uploadTempDir = UUID.randomUUID().toString();
+//			session.setAttribute("uploadTempDir", uploadTempDir);
+//		}
+//	}
 
 	@PostMapping
     public AX5File upload(@RequestParam MultipartFile file) throws IOException {
@@ -50,15 +68,24 @@ public class AX5UploaderController {
     }
 
     @GetMapping
-    public List<AX5File> files() {
-        return fileUploadService.files();
+    public ResponseEntity<?> files(@RequestParam String subPath, @RequestParam String uploadType, HttpSession session) {
+
+		List<AX5File> fileList = new ArrayList<>();
+
+		if (!uploadType.equalsIgnoreCase("NEW")) {
+			String uploadTempDir = session.getAttribute("uploadTempDir").toString();
+			fileList = fileUploadService.files(subPath + File.separator + uploadTempDir);
+		}
+
+		return new ResponseEntity<>(fileList, HttpStatus.OK);
+		//return fileUploadService.files(fileList);
     }
 
 
-	@GetMapping("/load")
-	public List<AX5File> fileLoad() {
-		return fileUploadService.files();
-	}
+//	@GetMapping("/load")
+//	public List<AX5File> fileLoad() {
+//		return fileUploadService.files();
+//	}
 
 //    @GetMapping(value = "/flush")
 //    public ApiResponse flush() {

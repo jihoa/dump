@@ -21,7 +21,7 @@ public class FilePersistService implements InitializingBean {
     private String path;
 
     public void persist(AX5File ax5File) throws IOException {
-        clean();
+        clean(ax5File.getSubPath());
 
         File file = new File(path + File.separator + ax5File.getSaveName());
 
@@ -47,8 +47,8 @@ public class FilePersistService implements InitializingBean {
 
     int maxSaveFileCount = 20;
 
-    public void clean() throws IOException {
-        List<AX5File> ax5Files = listFiles();
+    public void clean(String subPath) throws IOException {
+        List<AX5File> ax5Files = listFiles(subPath);
 
         if (ax5Files.size() > maxSaveFileCount) {
             for (int i = maxSaveFileCount - 1; i < ax5Files.size(); i++) {
@@ -62,7 +62,7 @@ public class FilePersistService implements InitializingBean {
         FileUtils.forceMkdir(new File(path));
     }
 
-    public List<AX5File> listFiles() {
+    public List<AX5File> listFiles(String subPath) {
         List<AX5File> files = FileUtils.listFiles(new File(path), new String[]{"json"}, false).stream().map(file -> {
             try {
                 return getAx5File(file);

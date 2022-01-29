@@ -3,7 +3,6 @@ package org.springframework.samples.petclinic.upload;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,8 +27,8 @@ public class FileUploadService {
         return file;
     }
 
-    public List<AX5File> files() {
-        return filePersistService.listFiles();
+    public List<AX5File> files(String subPath) {
+        return filePersistService.listFiles(subPath);
     }
 
     public AX5File getFile(String id) throws IOException {
