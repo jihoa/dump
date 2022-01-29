@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface ProductRepository extends JpaRepository<ProductEntity, String> {
 
@@ -59,22 +60,22 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String> 
 	@Query("SELECT p FROM ProductEntity p WHERE p.productPrice > 2000")
 	List<ProductEntity> findByPriceBasis();
 
-//	@Query(value = "SELECT * FROM product p WHERE p.price > 2000", nativeQuery = true)
-//	List<ProductEntity> findByPriceBasisNativeQuery();
+	@Query(value = "SELECT * FROM product p WHERE p.product_price > 2000", nativeQuery = true)
+	List<ProductEntity> findByPriceBasisNativeQuery();
 
-//	@Query("SELECT p FROM product p WHERE p.price > ?1")
-//	List<ProductEntity> findByPriceWithParameter(Integer price);
+	@Query("SELECT p FROM ProductEntity p WHERE p.productPrice > ?1")
+	List<ProductEntity> findByPriceWithParameter(Integer price);
 //
-//	@Query("SELECT p FROM Product p WHERE p.price > :price")
-//	List<Product> findByPriceWithParameterNaming(Integer price);
+	@Query("SELECT p FROM ProductEntity p WHERE p.productPrice > :price")
+	List<ProductEntity> findByPriceWithParameterNaming(Integer price);
 //
-//	@Query("SELECT p FROM Product p WHERE p.price > :pri")
-//	List<Product> findByPriceWithParameterNaming2(@Param("pri") Integer price);
+	@Query("SELECT p FROM ProductEntity p WHERE p.productPrice > :pri")
+	List<ProductEntity> findByPriceWithParameterNaming2(@Param("pri") Integer price);
 //
-//	@Query(value = "SELECT * FROM product WHERE price > :price",
-//		countQuery = "SELECT count(*) FROM product WHERE price > ?1",
-//		nativeQuery = true)
-//	List<Product> findByPriceWithParameterPaging(Integer price, Pageable pageable);
+	@Query(value = "SELECT * FROM product WHERE product_price > :price",
+		countQuery = "SELECT count(*) FROM product WHERE product_price > ?1",
+		nativeQuery = true)
+	List<ProductEntity> findByPriceWithParameterPaging(Integer price, Pageable pageable);
 
 
 
