@@ -2,10 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div class="container">
-    <form action="/hello/members/new" method="post">
+    <form role="form" action="/hello/members/new" th:object="${memberForm}" method="post">
         <div class="form-group">
-            <label for="name">이름</label>
-            <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+            <label th:for="name">이름</label>
+            <input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력하세요"
+                   th:class="${#fields.hasErrors('name')}? 'form-control fieldError' : 'form-control'">
+        </div>
+        <div>
+            <label th:for="city">도시</label>
+            <input type="text" th:field="*{city}" class="form-control">
+        </div>
+        <div>
+          <label th:for="street">거리</label>
+          <input type="text" th:field="*{street}" class="form-control">
+        </div>
+        <div>
+          <label th:for="zipcode">zipcode</label>
+          <input type="text" th:field="*{zipcode}" class="form-control">
         </div>
         <button type="submit">등록</button>
     </form>

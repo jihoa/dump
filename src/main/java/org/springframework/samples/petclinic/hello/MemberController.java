@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.hello;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,15 +22,21 @@ public class MemberController {
 
     @GetMapping("/hello/members/new")
 	@ApiOperation("HELLO_GET")
-    public String createForm() {
-        return "members/createMemberForm";
+    public String createForm(Model model) {
+
+		model.addAttribute("memberForm", new MemberForm());
+		return "members/createMemberForm";
     }
 
     @PostMapping("/hello/members/new")
 	@ApiOperation("HELLO_POST")
-    public String create(MemberForm form) {
-        Member member = new Member();
+    public String create(@Valid MemberForm form) {
+
+		Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
+
+		Member member = new Member();
         member.setName(form.getName());
+		member.setAddress(address);
 
         memberService.join(member);
 
