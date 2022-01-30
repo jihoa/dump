@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 class WelcomeController {
 
-	@GetMapping("/")
+	@GetMapping("/pet-clinic")
 	public String welcome() {
 		return "welcome";
 	}
