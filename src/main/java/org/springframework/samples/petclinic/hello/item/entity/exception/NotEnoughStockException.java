@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.hello.exception;
+package org.springframework.samples.petclinic.hello.item.entity.exception;
 
 public class NotEnoughStockException extends RuntimeException {
 
