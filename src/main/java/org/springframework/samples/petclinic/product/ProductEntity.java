@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.samples.petclinic.shorturl.BaseEntity;
 
 @Entity
 @Getter
@@ -18,7 +19,7 @@ import lombok.ToString;
 @Builder
 @Table(name = "product")
 @ToString
-public class ProductEntity {
+public class ProductEntity extends BaseEntity {
 
   @Id
   String productId;
