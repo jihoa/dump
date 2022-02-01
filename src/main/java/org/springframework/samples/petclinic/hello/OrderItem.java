@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.hello;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,7 +17,7 @@ import org.springframework.samples.petclinic.hello.item.entity.Item;
 @Getter @Setter
 public class OrderItem {
 
-	@Id
+	@Id @GeneratedValue
 	@Column(name = "order_item_id")
 	private Long id;
 
