@@ -17,15 +17,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/*
+도메인 모델 패턴 : 엔티티가 비즈니스 로직을 가지고 객체 지향의 특성을 적극 활용하는 것.
 
+트랜잭션 스크립트 패턴 : 서비스 계층에서 대부분의 비즈니스 로직 처리
+ */
 
 @Entity
 @Table(name = "orders")
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 
 	@Id
@@ -34,14 +41,22 @@ public class Order {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "member_id")
+	@JoinColumn(name = "member_id")//fk
 	private Member member;
 
+
+	//cascade는 private owner 인 경우 사용.
+	//두개의 엔티티의 라이프 사이클이 동일한 경우 사용
+	//orderItems와 함께 생성되고 삭제된다.
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderItem> orderItems = new ArrayList<>();
 
+
+	//1:1관계에서 fk를 선택시 누굴 통해 접근 많이 하는지가 중요하다.
+	//Order을 통해 Delivery 접근 많이 하니
+	//fk는 Order
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "delivery_id")
+	@JoinColumn(name = "delivery_id") //연관관계의 주인에게 JoinColumn을 쓰자.
 	private Delivery delivery;
 
 	private LocalDateTime orderDate;
@@ -49,6 +64,9 @@ public class Order {
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
 
+
+	//연관관계 편의 메서드.
+	//양쪽이 있는 경우 컨트롤 하는쪽이 들고 있는게 좋음.
 	public void setMember(Member member) {
 		this.member = member;
 		member.getOrders().add(this);

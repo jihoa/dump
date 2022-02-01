@@ -20,6 +20,7 @@ public class Delivery {
 	@Column(name = "delivery_id")
 	private Long id;
 
+	//Order.delivery의 거울이다.
 	@OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
 	private Order order;
 

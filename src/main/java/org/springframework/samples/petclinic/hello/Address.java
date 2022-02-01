@@ -11,6 +11,7 @@ public class Address {
 	private String street;
 	private String zipcode;
 
+	//기본 생성자를 사용하지 않는다는 의도
 	protected Address() {
 
 	}

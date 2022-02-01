@@ -10,8 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.samples.petclinic.hello.OrderItem;
 import org.springframework.samples.petclinic.hello.item.entity.exception.NotEnoughStockException;
 
 @Entity
@@ -30,6 +32,9 @@ public abstract class Item {
 
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
+
+	@OneToMany(mappedBy = "item")
+	private List<OrderItem> orderItems_unused = new ArrayList<>();
 
     public void addStock(int quantity) {
         this.stockQuantity += quantity;
