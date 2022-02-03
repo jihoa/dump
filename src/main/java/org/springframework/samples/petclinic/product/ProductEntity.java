@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.samples.petclinic.shorturl.BaseEntity;
+import org.springframework.samples.petclinic.navershorturl.BaseEntity;
 
 @Entity
 @Getter

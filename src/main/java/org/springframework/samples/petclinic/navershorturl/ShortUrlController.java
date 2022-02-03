@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.shorturl;
+package org.springframework.samples.petclinic.navershorturl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.shorturl;
+package org.springframework.samples.petclinic.navershorturl;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,8 +1,9 @@
 package org.springframework.samples.petclinic.hello.item;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,19 @@ import org.springframework.transaction.annotation.Transactional;
 class ItemServiceTest {
 
 
-	@Autowired
+
 	ItemService itemService;
-	@Autowired ItemRepository itemRepository;
+
 	@Autowired
+	ItemRepository itemRepository;
+	@PersistenceContext
 	EntityManager em;
+
+
+	@BeforeEach
+	void BeforeEach() {
+		itemService = new ItemService(itemRepository);
+	}
 
 	@Test
 	public void 상품저장() throws Exception {
@@ -41,7 +50,7 @@ class ItemServiceTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	public void 이미존재하는상품은merge한다() throws Exception {
 		//given
 		Book book = new Book();

@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.shorturl;
+package org.springframework.samples.petclinic.navershorturl;
 
 
 public interface ShortUrlDAO {

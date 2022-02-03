@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.shorturl;
+package org.springframework.samples.petclinic.navershorturl;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;

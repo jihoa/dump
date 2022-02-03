@@ -80,7 +80,8 @@ public class FilePersistService implements InitializingBean {
     public AX5File getAx5File(File file) throws IOException {
         AX5File ax5File = JsonUtils.fromJson(FileUtils.readFileToString(file, "UTF-8"), AX5File.class);
         ax5File.setLastModified(file.lastModified());
-        ax5File.setFile(new File(path + File.separator + ax5File.getSaveName()));
+        //ax5File.setFile(new File(path + File.separator + ax5File.getSaveName()));
+		ax5File.setFile(new File(ax5File.getSaveName()));
         return ax5File;
     }
 

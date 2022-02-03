@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.shorturl;
+package org.springframework.samples.petclinic.navershorturl;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
