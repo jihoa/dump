@@ -9,11 +9,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class MemberServiceTest {
+
+
 	MemoryMemberRepository memberRepository;
+
 	MemberService memberService;
 
 	@BeforeEach
 	void beforeEach() {
+		memberRepository = new MemoryMemberRepository();
+		memberService = new MemberService(memberRepository);
 	}
 
 	@AfterEach
@@ -65,11 +70,4 @@ public class MemberServiceTest {
 
 	}
 
-	@Test
-	void findMembers() {
-	}
-
-	@Test
-	void findOne() {
-	}
 }
