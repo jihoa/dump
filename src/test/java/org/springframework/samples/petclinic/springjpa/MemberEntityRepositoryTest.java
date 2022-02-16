@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.springjpa;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,7 @@ class MemberEntityRepositoryTest {
 
 
 	@Test
+	@Disabled
 	@DisplayName("memberEntityRepository 초기화 필요..")
 	public void findByUsernameAndAgeGreaterThen() {
 		MemberEntity m1 = new MemberEntity("AAA", 10);

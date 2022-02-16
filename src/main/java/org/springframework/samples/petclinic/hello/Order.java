@@ -41,7 +41,7 @@ public class Order {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "member_id")//fk
+	@JoinColumn(name = "member_id")//fk있는곳이 연관관계 주인 //연관관계의 주인에게 JoinColumn을 쓰자.
 	private Member member;
 
 

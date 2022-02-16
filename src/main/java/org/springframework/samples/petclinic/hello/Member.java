@@ -34,8 +34,7 @@ public class Member {
 	private Address address;
 
 	//Member.orders를 변경해도 fk 변경되지 않음.
-	//읽기전용. member 필드에 의해서 거울이 되는 거다.
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member")// mappedBy : 읽기전용. member 필드에 의해서 매핑된 거울일 뿐..
 	private List<Order> orders = new ArrayList<>();
 
 //	public List<Order> getOrders() {
