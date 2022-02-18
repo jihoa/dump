@@ -1,6 +1,18 @@
 server:
   port: 8080
 
+database : h2
+
+#spring:
+#  datasource:
+#    schema: classpath*:db/${database}/schema.sql
+#    data : classpath*:db/${database}/data.sql
+#    url: jdbc:h2:mem:testdb
+#  h2:
+#    console:
+#      enabled: true
+#      path: /console
+
 # mybatis
 mybatis:
   # mapper 파일 위치 지정
